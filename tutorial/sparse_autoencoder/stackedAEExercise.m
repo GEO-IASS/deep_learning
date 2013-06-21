@@ -30,7 +30,7 @@ sparsityParam = 0.1;   % desired average activation of the hidden units.
 lambda = 3e-3;         % weight decay parameter       
 beta = 3;              % weight of sparsity penalty term
 
-minFuncMaxIter = 400;  % Number of iterations for function minimization
+minFuncMaxIter = 140;  % Number of iterations for function minimization
 
 
 if DEBUG
@@ -50,21 +50,21 @@ trainLabels = loadMNISTLabels('mnist/train-labels-idx1-ubyte');
 
 trainLabels(trainLabels == 0) = 10; % Remap 0 to 10 since our labels need to start from 1
 
-[a] = trainLabels < 10;
-[b] = a == 0;
-
-%Grab a few training data sets
-tmpA = trainData(:, b);
-tmpL = trainLabels(b, :);
-
-trainData = trainData(:, a);
-trainLabels = trainLabels(a);
-
-trainData = trainData(:, 1:floor(size(trainData, 2)/2));
-trainLabels = trainLabels(1:floor(size(trainLabels, 1)/2));
-
-trainData = [trainData tmpA(:, 1:100)];
-trainLabels = [trainLabels; tmpL(1:100)];
+% [a] = trainLabels < 10;
+% [b] = a == 0;
+% 
+% %Grab a few training data sets
+% tmpA = trainData(:, b);
+% tmpL = trainLabels(b, :);
+% 
+% trainData = trainData(:, a);
+% trainLabels = trainLabels(a);
+% 
+% trainData = trainData(:, 1:floor(size(trainData, 2)/2));
+% trainLabels = trainLabels(1:floor(size(trainLabels, 1)/2));
+% 
+% trainData = [trainData tmpA(:, 1:100)];
+% trainLabels = [trainLabels; tmpL(1:100)];
 
 %%======================================================================
 %% STEP 2: Train the first sparse autoencoder
